@@ -13,9 +13,17 @@ export class UserDataComponent implements OnInit {
   constructor(private session: SessionService, private socialAuthService: AuthService) { }
 
   user: SocialUser;
+  contentList = [];
 
   ngOnInit() {
     this.user = this.session.getSocialUser();
+    if (this.contentList.length === 0){
+      const content = {
+        createDate: new Date(),
+        text: ''
+      };
+      this.contentList[0] = content;
+    }
   }
 
   logout() {
