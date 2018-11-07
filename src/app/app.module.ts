@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 
 import {
   SocialLoginModule,
@@ -30,7 +31,8 @@ import { AuthGuard } from './auth/auth.guard';
     SocialLoginModule,
     HttpModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [{
     provide: AuthServiceConfig,
@@ -49,10 +51,6 @@ export class AppModule { }
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
     [
-      {
-        id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider('761402740627931')
-      },
       {
         id: GoogleLoginProvider.PROVIDER_ID,
         provider: new GoogleLoginProvider('706044132167-j4q7f5p4rj5bfkb8jin84bs4iolka9op.apps.googleusercontent.com')

@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.socialAuthService.authState.subscribe((user) => {
-      console.log('Dados do usuário => ' + JSON.stringify(user));
+      // console.log('Dados do usuário => ' + JSON.stringify(user));
       if (user) {
         this.session.addSocialUser(user);
         this.router.navigate(['myArea']);

@@ -1,23 +1,57 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-1">
-            <div class="row">
-                <img [src]="user.image">
-            </div>
-            <div class="row">
-                {{user.name}}
-                <img src="assets/images/logout.png" class="logoutImg" (click)="logout()">
-            </div>
-            <div class="row" style="padding-top: 30px">
-                <button>Novo</button>
-            </div>
-        </div>
         <div class="col-md-11">
+
             <ul class="nav nav-tabs">
-                <li *ngFor="let content of contentList" class="nav-item">
-                    <a class="nav-link active" href="#">Active</a>
+                <li *ngFor="let content of contentList;let i = index;" class="nav-item">
+                    <div *ngIf="!isChangingTitle && i===currentTextIndex" [ngClass]="'nav-link active'">
+                        {{content.title}}
+                        <img src="assets/images/edit.png" class="editTitle" (click)="enableChangeTitle();">
+                    </div>
+                    <a *ngIf="i!==currentTextIndex" [ngClass]="'nav-link'" (click)="selectTab(i)">{{content.title}}</a>
+
+                    <div [ngClass]="'nav-link active'" *ngIf="isChangingTitle && i===currentTextIndex">
+                        <input #titleInput name="titleInput" id="titleInput" type="text" (blur)="disableChangeTitle()"
+                            [(ngModel)]="contentList[currentTextIndex].title">
+                    </div>
+
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link">
+                        <img src="assets/images/add.png" (click)="startNewText()" style="width:1rem; height: 1rem;">
+                    </div>
                 </li>
             </ul>
+            <textarea class="textAreaClass" [(ngModel)]="contentList[currentTextIndex].text" rows="30"></textarea>
         </div>
+        <div class="col-md-1">
+
+            <div class="row" style="padding-top: 3rem;">
+                <img src="assets/images/config.png" class="configImage" style="width:2rem; height: 2rem;" (click)="changeConfigState()">
+            </div>
+
+            <table *ngIf="isConfigEnabled">
+                <tr>
+                    <td>
+                        <img [src]="user.image" style="width:2rem;height: 2rem;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="assets/images/logout.png" title="Logout" class="logoutImg" (click)="logout()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                </tr>
+
+            </table>
+
+
+
+        </div>
+
     </div>
 </div>
