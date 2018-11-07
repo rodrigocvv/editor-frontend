@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
-  constructor(private session: SessionService, private socialAuthService: AuthService,
+  constructor(public session: SessionService, private socialAuthService: AuthService,
     private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
