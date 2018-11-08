@@ -79,9 +79,10 @@ export class UserDataComponent implements OnInit {
   }
 
   logout() {
-    this.socialAuthService.signOut();
-    this.session.logout();
-    this.router.navigate(['']);
+    this.socialAuthService.signOut().then(response => {
+      this.session.logout();
+      this.router.navigate(['']);
+    });
   }
 
 }
