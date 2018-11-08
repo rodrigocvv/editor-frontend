@@ -5,8 +5,8 @@
             <ul class="nav nav-tabs">
                 <li *ngFor="let content of contentList;let i = index;" class="nav-item">
                     <div *ngIf="!isChangingTitle && i===currentTextIndex" [ngClass]="'nav-link active'">
-                        {{content.title}}
-                        <img src="assets/images/edit.png" class="editTitle" (click)="enableChangeTitle();">
+                        <span (dblclick)="enableChangeTitle()">{{content.title}}</span>
+                        <span style="position: float;margin-right: -50px;"><img src="assets/images/cancel.png" class="editTitle"  (click)="deleteCurrentText();"></span>
                     </div>
                     <a *ngIf="i!==currentTextIndex" [ngClass]="'nav-link'" (click)="selectTab(i)">{{content.title}}</a>
 

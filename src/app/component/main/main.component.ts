@@ -20,7 +20,7 @@ export class MainComponent implements OnInit {
       // console.log('Dados do usuário => ' + JSON.stringify(user));
       if (user) {
         this.session.addSocialUser(user);
-        this.router.navigate(['myArea']);
+        this.router.navigate(['editor']);
       }
     });
   }

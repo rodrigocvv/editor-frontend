@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewChecked, AfterContentChecked, ElementRef, V
 import { SocialUser } from '../../model/social-user';
 import { SessionService } from '../../service/session.service';
 import { AuthService } from 'angular-6-social-login';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-data',
@@ -10,7 +11,7 @@ import { AuthService } from 'angular-6-social-login';
 })
 export class UserDataComponent implements OnInit {
 
-  constructor(private session: SessionService, private socialAuthService: AuthService) { }
+  constructor(private session: SessionService, private socialAuthService: AuthService, private router: Router) { }
 
   user: SocialUser;
   contentList = [];
@@ -23,7 +24,11 @@ export class UserDataComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.session.getSocialUser();
-    if (this.contentList.length === 0){
+    this.checkEmptyContentList();
+  }
+
+  checkEmptyContentList() {
+    if (this.contentList.length === 0) {
       const content = {
         createDate: new Date(),
         text: '',
@@ -32,34 +37,43 @@ export class UserDataComponent implements OnInit {
       this.contentList[0] = content;
       this.currentTextIndex = 0;
     }
+
   }
 
-  changeConfigState(){
+  changeConfigState() {
     this.isConfigEnabled = !this.isConfigEnabled;
   }
 
-  enableChangeTitle(){
+  enableChangeTitle() {
     this.isChangingTitle = true;
     // this.titleInput.nativeElement.focus();
     setTimeout(() => this.titleInput.nativeElement.focus());
   }
 
-  disableChangeTitle(){
+  disableChangeTitle() {
     this.isChangingTitle = false;
   }
 
-  selectTab(index){
+  selectTab(index) {
     this.currentTextIndex = index;
   }
 
-  startNewText(){
+  deleteCurrentText() {
+    this.contentList.splice(this.currentTextIndex, 1);
+    if (this.currentTextIndex > 0) {
+      this.currentTextIndex--;
+    }
+    this.checkEmptyContentList();
+  }
+
+  startNewText() {
     let newIndex = this.contentList.length;
     const content = {
       createDate: new Date(),
       text: '',
-      title: 'New'+newIndex
+      title: 'New' + newIndex
     };
-    
+
     this.contentList[newIndex] = content;
     this.currentTextIndex = newIndex;
   }
@@ -67,6 +81,7 @@ export class UserDataComponent implements OnInit {
   logout() {
     this.socialAuthService.signOut();
     this.session.logout();
+    this.router.navigate(['']);
   }
 
 }
