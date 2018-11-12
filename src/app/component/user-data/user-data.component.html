@@ -1,18 +1,18 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="!loading">
     <div class="row">
         <div class="col-md-11">
 
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs" style="margin-top:1rem;">
                 <li *ngFor="let content of contentList;let i = index;" class="nav-item">
                     <div *ngIf="!isChangingTitle && i===currentTextIndex" [ngClass]="'nav-link active'">
                         <span (dblclick)="enableChangeTitle()">{{content.title}}</span>
-                        <span style="position: float;margin-right: -50px;"><img src="assets/images/cancel.png" class="editTitle"  (click)="deleteCurrentText();"></span>
+                        <span style="position: float;margin-left: 2rem;"><a href="javascript:void(0)"><img src="assets/images/cancel.png" class="close-button"  (click)="deleteCurrentText();"></a></span>
                     </div>
                     <a *ngIf="i!==currentTextIndex" [ngClass]="'nav-link'" (click)="selectTab(i)">{{content.title}}</a>
 
                     <div [ngClass]="'nav-link active'" *ngIf="isChangingTitle && i===currentTextIndex">
                         <input #titleInput name="titleInput" id="titleInput" type="text" (blur)="disableChangeTitle()"
-                            [(ngModel)]="contentList[currentTextIndex].title">
+                            [(ngModel)]="contentList[currentTextIndex].title" (keydown)="keyDownFunction($event)">
                     </div>
 
                 </li>
@@ -49,9 +49,13 @@
 
             </table>
 
+            <div class="row" style="padding-top: 3rem;">
+                <img src="assets/images/save.png" class="configImage" (click)="saveContent()" style="width:2rem; height: 2rem;">
+            </div>
 
 
         </div>
 
     </div>
 </div>
+<div *ngIf="loading" class="loading">Loading&#8230;</div>

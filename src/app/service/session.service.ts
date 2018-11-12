@@ -5,6 +5,8 @@ import { SocialUser } from '../model/social-user';
 @Injectable()
 export class SessionService {
 
+    token: string;
+
     listUser: SocialUser[];
 
     public addSocialUser(user: SocialUser): void {

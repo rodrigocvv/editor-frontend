@@ -19,7 +19,17 @@ export class MainComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       // console.log('Dados do usuário => ' + JSON.stringify(user));
       if (user) {
+        this.doApplicationLogin(user);
+      }
+    });
+  }
+
+  doApplicationLogin(user) {
+    this.loginService.getTokien(user.idToken).subscribe(resp => {
+      // console.log('Resposta do servidor => ' + JSON.stringify(resp));
+      if (resp) {
         this.session.addSocialUser(user);
+        this.session.token = resp.token;
         this.router.navigate(['editor']);
       }
     });
