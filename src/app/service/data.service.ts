@@ -7,7 +7,7 @@ export class DataService {
 
     // private URL_DATA = 'http://localhost:3000/data';
     // private URL_DATA = 'https://texteditor-backend.herokuapp.com/data';
-    private URL_DATA = 'https://texteditor-backend.rodrigocvv.com/data';
+    private URL_DATA = 'http://texteditor-backend.rodrigocvv.com/data';
 
     constructor(private httpClient: HttpClient) { }
 
