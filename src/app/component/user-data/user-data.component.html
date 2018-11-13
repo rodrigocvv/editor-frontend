@@ -23,6 +23,9 @@
                 </li>
             </ul>
             <textarea class="textAreaClass" [(ngModel)]="contentList[currentTextIndex].text" rows="30"></textarea>
+            <br>
+            <span *ngIf="isSaved()">Salvo</span>
+            <span *ngIf="!isSaved()">Não Salvo</span>
         </div>
         <div class="col-md-1">
 

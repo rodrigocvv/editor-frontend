@@ -39,7 +39,7 @@ export class UserDataComponent implements OnInit {
       // console.log('Retorno do get data => ' + JSON.stringify(dataDB));
       if (dataDB){
         this.contentListDB = dataDB;
-        this.contentList = dataDB;
+        this.contentList = JSON.parse(JSON.stringify(dataDB));
       }
       this.checkEmptyContentList();
       this.loading = false;
@@ -72,8 +72,21 @@ export class UserDataComponent implements OnInit {
 
   private saveContent() {
     this.dataService.update(this.contentList).subscribe(response => {
-      console.log('Retorno do método salvar => ' + JSON.stringify(response));
+      //console.log('Retorno do método salvar => ' + JSON.stringify(response));
+      this.contentListDB = response.slice();
     });
+  }
+
+  public isSaved(){
+    let saved = true;
+
+    this.contentList.forEach( (content, index) => {
+      if (!this.contentListDB[index] || content.text !== this.contentListDB[index].text || content.title !== this.contentListDB[index].title){
+        saved = false;
+      }
+    });
+    return saved;
+
   }
 
   enableChangeTitle() {
@@ -88,6 +101,9 @@ export class UserDataComponent implements OnInit {
 
   selectTab(index) {
     this.currentTextIndex = index;
+    if (!this.isSaved()){
+      this.saveContent();
+    }
   }
 
   deleteCurrentText() {
@@ -96,6 +112,7 @@ export class UserDataComponent implements OnInit {
       this.currentTextIndex--;
     }
     this.checkEmptyContentList();
+    this.saveContent();
   }
 
   startNewText() {
