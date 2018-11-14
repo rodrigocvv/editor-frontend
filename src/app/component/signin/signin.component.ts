@@ -17,6 +17,8 @@ import { Router } from '@angular/router';
 
 export class SigninComponent { // implements OnInit {
 
+    loading = false;
+
     constructor(private socialAuthService: AuthService, private session: SessionService, private loginService: LoginService, private router: Router) { }
 
     public socialSignIn(socialPlatform: string) {
@@ -30,12 +32,14 @@ export class SigninComponent { // implements OnInit {
         } else if (socialPlatform === 'google') {
             socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
         } */
+        this.loading = true;
         this.socialAuthService.signIn(socialPlatformProvider).then(
             (userData) => {
                 // this.session.addSocialUser(userData);
                 this.doApplicationLogin(userData);
             }, error => {
                 console.log('Erro => ' + error);
+                this.loading = false;
             }
         );
     }
@@ -49,6 +53,8 @@ export class SigninComponent { // implements OnInit {
             this.session.token = resp.token;
             this.router.navigate(['editor']);
           }
+        }, error => {
+            this.loading = false;
         });
       }
 

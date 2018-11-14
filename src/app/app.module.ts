@@ -18,13 +18,15 @@ import { HttpModule } from '@angular/http';
 import { HttpTokenInterceptor } from './service/http-token-interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './auth/auth.guard';
+import { LoaderComponent } from './component/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
     UserDataComponent,
-    MainComponent
+    MainComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

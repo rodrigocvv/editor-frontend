@@ -12,15 +12,22 @@ import { Router } from '@angular/router';
 })
 export class MainComponent implements OnInit {
 
+  loading = false;
+
   constructor(public session: SessionService, private socialAuthService: AuthService,
     private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
+    this.loading = true;
     this.socialAuthService.authState.subscribe((user) => {
       // console.log('Dados do usuário => ' + JSON.stringify(user));
       if (user) {
         this.doApplicationLogin(user);
+      } else {
+        this.loading = false;
       }
+    }, error => {
+      this.loading = false;
     });
   }
 
@@ -31,7 +38,12 @@ export class MainComponent implements OnInit {
         this.session.addSocialUser(user);
         this.session.token = resp.token;
         this.router.navigate(['editor']);
+        this.loading = false;
+      } else {
+        this.loading = false;
       }
+    }, error => {
+      this.loading = false;
     });
   }
 
