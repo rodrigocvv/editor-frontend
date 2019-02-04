@@ -1,17 +1,18 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { constants } from '../constants';
 
 @Injectable()
 export class LoginService {
 
-    // private URL_LOGIN = 'http://localhost:3000/auth/login';
-    private URL_LOGIN = 'https://texteditor-backend.herokuapp.com/auth/login';
+    private URL_LOGIN = constants.url_backend + 'auth/login';
+    // private URL_LOGIN = 'https://texteditor-backend.herokuapp.com/auth/login';
     // private URL_LOGIN = 'http://texteditor-backend.rodrigocvv.com/auth/login';
 
     constructor(private httpClient: HttpClient) { }
 
-    public getTokien(googleToken): Observable<any> {
+    public getToken(googleToken): Observable<any> {
         return new Observable<any>(observer => {
             const loginData = {
                 "token": googleToken,

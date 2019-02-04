@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
   }
 
   doApplicationLogin(user) {
-    this.loginService.getTokien(user.idToken).subscribe(resp => {
+    this.loginService.getToken(user.idToken).subscribe(resp => {
       // console.log('Resposta do servidor => ' + JSON.stringify(resp));
       if (resp) {
         this.session.addSocialUser(user);
