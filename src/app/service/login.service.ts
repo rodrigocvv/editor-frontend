@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { constants } from '../constants';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class LoginService {
 
-    private URL_LOGIN = constants.url_backend + 'auth/login';
-    // private URL_LOGIN = 'https://texteditor-backend.herokuapp.com/auth/login';
-    // private URL_LOGIN = 'http://texteditor-backend.rodrigocvv.com/auth/login';
+    private URL_LOGIN = environment.backendUrl + 'auth/login';
 
     constructor(private httpClient: HttpClient) { }
 

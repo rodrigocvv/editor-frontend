@@ -1,14 +1,12 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { constants } from '../constants';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class DataService {
 
-    private URL_DATA = constants.url_backend + 'data';
-    // private URL_DATA = 'https://texteditor-backend.herokuapp.com/data';
-    // private URL_DATA = 'http://texteditor-backend.rodrigocvv.com/data';
+    private URL_DATA = environment.backendUrl + 'data';
 
     constructor(private httpClient: HttpClient) { }
 
