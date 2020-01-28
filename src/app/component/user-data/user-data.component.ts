@@ -25,7 +25,7 @@ export class UserDataComponent implements OnInit {
 
   loading = false;
 
-  @ViewChild("titleInput") titleInput: ElementRef;
+  @ViewChild("titleInput", {static: false}) titleInput: ElementRef;
 
   ngOnInit() {
     this.user = this.session.getSocialUser();
