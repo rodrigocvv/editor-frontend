@@ -19,6 +19,7 @@ import { HttpTokenInterceptor } from './service/http-token-interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './auth/auth.guard';
 import { LoaderComponent } from './component/loader/loader.component';
+import { FreeDocumentEntryComponent } from './component/free-document-entry/free-document-entry.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LoaderComponent } from './component/loader/loader.component';
     SigninComponent,
     UserDataComponent,
     MainComponent,
-    LoaderComponent
+    LoaderComponent,
+    FreeDocumentEntryComponent
   ],
   imports: [
     BrowserModule,

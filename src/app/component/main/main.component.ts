@@ -31,6 +31,10 @@ export class MainComponent implements OnInit {
     });
   }
 
+  redirectFree() {
+    this.router.navigate(['free']);
+  }  
+
   doApplicationLogin(user) {
     this.loginService.getToken(user.idToken).subscribe(resp => {
       // console.log('Resposta do servidor => ' + JSON.stringify(resp));
