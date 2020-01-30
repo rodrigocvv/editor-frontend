@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-11">
-            <textarea class="textAreaClass" [(ngModel)]="content" (change)="updateItem()" rows="25"></textarea>
+            <textarea class="textAreaClass" [(ngModel)]="content" (keyup)="updateItem()" rows="25"></textarea>
         </div>
     </div>
 </div>
