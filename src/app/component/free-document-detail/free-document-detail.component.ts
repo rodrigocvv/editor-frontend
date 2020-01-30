@@ -22,7 +22,7 @@ export class FreeDocumentDetailComponent implements OnInit {
 
   itemKey: string;
 
-  private content: string;
+  content: string;
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
