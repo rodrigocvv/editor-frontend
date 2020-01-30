@@ -1,0 +1,8 @@
+<br><br>
+<div class="container-fluid" *ngIf="!loading">
+    <div class="row">
+        <div class="col-md-11">
+            <textarea class="textAreaClass" [(ngModel)]="content" (change)="updateItem()" rows="25"></textarea>
+        </div>
+    </div>
+</div>

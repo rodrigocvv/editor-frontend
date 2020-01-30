@@ -1,25 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AppComponent } from './app.component';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-import {
-  SocialLoginModule,
-  AuthServiceConfig,
-  GoogleLoginProvider,
-  FacebookLoginProvider,
-} from 'angular-6-social-login';
-import { SigninComponent } from './component/signin/signin.component';
-import { SessionService } from './service/session.service';
-import { UserDataComponent } from './component/user-data/user-data.component';
-import { MainComponent } from './component/main/main.component';
 import { HttpModule } from '@angular/http';
-import { HttpTokenInterceptor } from './service/http-token-interceptor';
+import { BrowserModule } from '@angular/platform-browser';
+import { AuthServiceConfig, GoogleLoginProvider, SocialLoginModule } from 'angular-6-social-login';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { AuthGuard } from './auth/auth.guard';
-import { LoaderComponent } from './component/loader/loader.component';
 import { FreeDocumentEntryComponent } from './component/free-document-entry/free-document-entry.component';
+import { LoaderComponent } from './component/loader/loader.component';
+import { MainComponent } from './component/main/main.component';
+import { SigninComponent } from './component/signin/signin.component';
+import { UserDataComponent } from './component/user-data/user-data.component';
+import { HttpTokenInterceptor } from './service/http-token-interceptor';
+import { SessionService } from './service/session.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+import { FreeDocumentDetailComponent } from './component/free-document-detail/free-document-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { FreeDocumentEntryComponent } from './component/free-document-entry/free
     UserDataComponent,
     MainComponent,
     LoaderComponent,
-    FreeDocumentEntryComponent
+    FreeDocumentEntryComponent,
+    FreeDocumentDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,10 @@ import { FreeDocumentEntryComponent } from './component/free-document-entry/free
     HttpModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
   ],
   providers: [{
     provide: AuthServiceConfig,

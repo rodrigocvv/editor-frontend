@@ -4,8 +4,24 @@
 
 export const environment = {
   production: false,
-  backendUrl: 'http://localhost:3000/'
+  backendUrl: 'http://localhost:3000/',
+  firebase: {
+    apiKey: "AIzaSyDm0g87k84w7L61lTjRQYak1CF9btaStIY",
+    databaseURL: "https://texteditor-222218.firebaseio.com"
+  }
 };
+
+
+/*
+
+databaseURL: "https://texteditor-222218.firebaseio.com/free-document"
+    authDomain: "[SEU AUTH DOMAIN]",
+    databaseURL: "[SUA DATABASE URL]",
+    projectId: "[SEU PROJECT ID]",
+    storageBucket: "[SEU STORAGE BUCKET]",
+    messagingSenderId: "[SUA MESSAGING SENDER ID]"
+
+    */
 
 /*
  * In development mode, to ignore zone related error stack frames such as

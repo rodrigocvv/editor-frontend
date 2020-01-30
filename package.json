@@ -18,6 +18,7 @@
     "@angular/common": "^8.2.14",
     "@angular/compiler": "^8.2.14",
     "@angular/core": "^8.2.14",
+    "@angular/fire": "^5.3.0",
     "@angular/forms": "^8.2.14",
     "@angular/http": "^7.2.16",
     "@angular/platform-browser": "^8.2.14",
@@ -26,6 +27,7 @@
     "angular-6-social-login": "^1.1.1",
     "bootstrap": "^4.4.1",
     "core-js": "^2.5.4",
+    "firebase": "^7.7.0",
     "rxjs": "^6.5.4",
     "zone.js": "~0.9.1"
   },

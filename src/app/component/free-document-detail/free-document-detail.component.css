@@ -1,0 +1,10 @@
+.textAreaClass { 
+    width:100%;
+    height: 100%;
+    border-top: 1px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    font-family:"Times New Roman", Times, serif;  
+    font-size: 0.9rem;
+}
